@@ -1,0 +1,243 @@
+/* src/Styles/Navbar.css */
+
+.app-navbar {
+  --nav-logo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-1 -7 26 30'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z' fill='%23d97706' stroke='%2378350f' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z' fill='%23f59e0b' stroke='%2378350f' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M12 -6 L13.3 -2.3 L17 -1 L13.3 0.3 L12 4 L10.7 0.3 L7 -1 L10.7 -2.3 Z' fill='%23fbbf24'/%3E%3C/svg%3E");
+  --nav-icon-home-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpolyline points='9 22 9 12 15 12 15 22'/%3E%3C/svg%3E");
+
+  position: sticky;
+  top: 12px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 14px auto 0;
+  padding: 0 clamp(16px, 4.2vw, 70px);
+  background: none;
+  border: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.app-navbar .navbar-brand,
+.app-navbar .navbar-links > a,
+.app-navbar .nav-auth-buttons a,
+.app-navbar .logout-btn {
+  pointer-events: auto;
+}
+
+/* ---------- Logged-Out Navbar ---------- */
+.app-navbar .navbar-brand {
+  flex: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.app-navbar .navbar-brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: #78350f;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.app-navbar .navbar-brand a::before {
+  content: '';
+  flex: none;
+  width: 46px;
+  height: 46px;
+  background: var(--nav-logo) center / contain no-repeat;
+  filter: drop-shadow(0 4px 8px rgba(217, 119, 6, 0.3));
+}
+
+.app-navbar .navbar-links {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.app-navbar .navbar-links > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  color: #78350f;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.app-navbar .navbar-links > a:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #d97706;
+}
+
+.app-navbar .nav-auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.app-navbar .nav-auth-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-navbar .nav-login-btn {
+  color: #78350f;
+  background: linear-gradient(180deg, #ffffff 0%, #fef3c7 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(120, 53, 15, 0.15);
+}
+
+.app-navbar .nav-signup-btn {
+  color: #312102;
+  background: linear-gradient(145deg, #ffea9f 0%, #f6bd33 50%, #df990b 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 24px rgba(214, 150, 10, 0.38);
+}
+
+
+/* =====================================================================
+   LOGGED-IN SIDEBAR MODE (Matches Reference exam1.jpg & exam2.jpg)
+   ===================================================================== */
+@keyframes ai-slide-sidebar {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) {
+  padding-left: 260px;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar {
+  position: fixed !important;
+  top: 16px !important;
+  left: 16px !important;
+  width: 235px !important;
+  height: calc(100vh - 32px) !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 24px 16px !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86) 0%, rgba(248, 242, 230, 0.76) 100%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 20px 45px rgba(120, 90, 30, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  pointer-events: auto !important;
+  animation: ai-slide-sidebar 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) backwards !important;
+  overflow-y: auto !important;
+}
+
+/* Brand header at the top */
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-brand {
+  padding-bottom: 20px !important;
+  border-bottom: 1px solid rgba(220, 205, 180, 0.7) !important;
+  margin-bottom: 14px !important;
+  flex: none !important;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-brand a {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #3b2d10 !important;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-brand a::before {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+/* Links stack */
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  flex: 1 !important;
+  justify-content: flex-start !important;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a {
+  width: 100% !important;
+  padding: 10px 14px !important;
+  border-radius: 14px !important;
+  justify-content: flex-start !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  color: #4a3f2c !important;
+  transition: all 0.2s ease !important;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a:hover {
+  background: rgba(245, 184, 46, 0.18) !important;
+  color: #92400e !important;
+}
+
+/* Active gold/amber pill style matching references exam1.jpg and exam2.jpg */
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a.nav-item-active,
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[href*="exams"],
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[href*="syllabus"],
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[href*="assessment"],
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[href*="grades"],
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[href*="questions"] {
+  /* Note: Active link matches current route or active state classes */
+}
+
+/* Specific active state highlighting matching reference UI */
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a[aria-current="page"],
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .navbar-links > a.active {
+  background: linear-gradient(135deg, #ffd75e 0%, #f2b21f 100%) !important;
+  color: #3a2a05 !important;
+  box-shadow: 0 6px 16px rgba(214, 150, 10, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  font-weight: 700 !important;
+}
+
+/* Logout button at the bottom of the sidebar */
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .logout-btn {
+  width: 100% !important;
+  margin: auto 0 4px 0 !important;
+  padding: 11px 16px !important;
+  border-radius: 14px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  color: #5c4d32 !important;
+  border: 1px solid rgba(220, 205, 180, 0.8) !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+}
+
+body:not(:has(.landing-hero-wrapper)):not(:has(.auth-split-card)) .app-navbar .logout-btn:hover {
+  background: rgba(254, 226, 226, 0.7) !important;
+  color: #b91c1c !important;
+  border-color: rgba(252, 165, 165, 0.6) !important;
+}

@@ -1,0 +1,491 @@
+/* src/Styles/Login.css
+   Warm Champagne & Cream Glassmorphism UI - Targeted Non-Scrollable Viewport Layout
+   Applies non-scrollable viewport ONLY to Landing, Login, Register, Dashboard, and Profile pages.
+*/
+
+body:has(.auth-page-container),
+body:has(.profile-page-container),
+body:has(.landing-page-container),
+body:has(.landing-container),
+body:has(.dashboard-container),
+body:has(.dashboard-page-container),
+body:has(.home-container) {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.auth-page-container {
+  --auth-icon-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Cpolyline points='3 7 12 13 21 7'/%3E%3C/svg%3E");
+  --auth-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='11' width='16' height='10' rx='2'/%3E%3Cpath d='M8 11V7a4 4 0 0 1 8 0v4'/%3E%3Ccircle cx='12' cy='16' r='1' fill='%23543b24'/%3E%3C/svg%3E");
+  --auth-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+  --auth-icon-user-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='8.5' cy='7' r='4'/%3E%3Cline x1='20' y1='8' x2='20' y2='14'/%3E%3Cline x1='23' y1='11' x2='17' y2='11'/%3E%3C/svg%3E");
+  --auth-icon-phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
+  --auth-icon-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+  --auth-icon-cloud: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23543b24' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z'/%3E%3Cpolyline points='12 13 12 21'/%3E%3Cpolyline points='9 16 12 13 15 16'/%3E%3C/svg%3E");
+  --auth-avatar-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23432d18' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+  --auth-avatar-user-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23432d18' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='8.5' cy='7' r='4'/%3E%3Cline x1='20' y1='8' x2='20' y2='14'/%3E%3Cline x1='23' y1='11' x2='17' y2='11'/%3E%3C/svg%3E");
+  --auth-logo-gold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a24c' stroke='%23996d28' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");
+
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.auth-page-container .mt-3 { margin-top: 10px; }
+.auth-page-container .mt-4 { margin-top: 14px; }
+
+/* ---------- Top-Left Clickable Brand Logo ---------- */
+.auth-top-brand {
+  position: fixed;
+  top: 20px;
+  left: 28px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.auth-top-brand:hover {
+  transform: translateY(-1px);
+  opacity: 0.88;
+}
+
+.auth-brand-icon {
+  width: 34px;
+  height: 30px;
+  background: var(--auth-logo-gold) center / contain no-repeat;
+  filter: drop-shadow(0 3px 6px rgba(139, 98, 40, 0.28));
+}
+
+.auth-brand-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #2f2114;
+}
+
+/* ---------- Perfectly Centered Non-Scrollable Frosted Glass Card ---------- */
+.auth-glass-card {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-width: 470px;
+  overflow: visible;
+  padding: 28px 32px 24px;
+  border: 1.5px solid rgba(235, 206, 155, 0.82);
+  border-radius: 30px;
+  background:
+    radial-gradient(ellipse 90% 60% at 15% 10%, rgba(255, 250, 240, 0.65) 0%, transparent 65%),
+    radial-gradient(ellipse 85% 65% at 85% 90%, rgba(236, 212, 174, 0.52) 0%, transparent 70%),
+    linear-gradient(155deg, rgba(251, 245, 234, 0.72) 0%, rgba(239, 224, 198, 0.62) 100%);
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  box-shadow:
+    0 28px 65px rgba(72, 50, 24, 0.22),
+    0 0 0 1px rgba(255, 252, 245, 0.45) inset,
+    0 4px 20px rgba(212, 169, 98, 0.16);
+}
+
+.auth-glass-card.register-glass-card {
+  max-width: 530px;
+  padding: 20px 28px 18px;
+}
+
+/* ---------- Top Circular User Badge ---------- */
+.auth-avatar-badge {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 10px;
+  border: 1.5px solid rgba(226, 192, 134, 0.85);
+  border-radius: 50%;
+  background:
+    var(--auth-avatar-user) center / 26px no-repeat,
+    radial-gradient(circle at 30% 25%, rgba(255, 252, 246, 0.95) 0%, rgba(242, 227, 200, 0.85) 100%);
+  box-shadow:
+    0 8px 18px rgba(98, 69, 32, 0.14),
+    inset 0 2px 4px rgba(255, 255, 255, 0.85);
+}
+
+.auth-avatar-badge.register-avatar {
+  background:
+    var(--auth-avatar-user-plus) center / 26px no-repeat,
+    radial-gradient(circle at 30% 25%, rgba(255, 252, 246, 0.95) 0%, rgba(242, 227, 200, 0.85) 100%);
+}
+
+/* ---------- Card Header ---------- */
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.auth-card-header h2 {
+  margin: 0 0 3px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: #2b1d10;
+}
+
+.auth-card-header p {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #6b533b;
+}
+
+/* ---------- Smooth Sliding Pill Switch ---------- */
+.auth-pill-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 14px;
+  padding: 4px;
+  border: 1.5px solid rgba(226, 195, 142, 0.65);
+  border-radius: 999px;
+  background: rgba(245, 234, 214, 0.55);
+  box-shadow: inset 0 2px 5px rgba(95, 67, 30, 0.08);
+}
+
+.pill-slider-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  border: 1px solid rgba(214, 171, 98, 0.85);
+  background: linear-gradient(135deg, #f3d79b 0%, #e1b86b 55%, #cfa04e 100%);
+  box-shadow:
+    0 4px 12px rgba(154, 108, 41, 0.22),
+    inset 0 1px 0 rgba(255, 251, 240, 0.85);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.auth-pill-switch:has(.pill-tab:last-child.active) .pill-slider-indicator {
+  transform: translateX(100%);
+}
+
+.pill-tab {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4f3923;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.pill-tab:hover:not(.active) {
+  color: #2b1d10;
+}
+
+.pill-tab.active {
+  color: #281a0d;
+}
+
+.pill-icon {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.pill-icon.lock-icon {
+  background-image: var(--auth-icon-lock);
+}
+
+.pill-icon.user-plus-icon {
+  background-image: var(--auth-icon-user-plus);
+}
+
+/* ---------- Register Grid & Form Inputs ---------- */
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+}
+
+.auth-input-group {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.register-grid .auth-input-group {
+  margin-bottom: 0;
+}
+
+.auth-input-group label,
+.register-grid .auth-input-group > label {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #3a2817;
+}
+
+.auth-form .auth-input-group > label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.auth-input-group input {
+  width: 100%;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(224, 194, 144, 0.78);
+  border-radius: 999px;
+  background: rgba(252, 246, 236, 0.78);
+  box-shadow:
+    0 3px 10px rgba(92, 65, 29, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
+  color: #2d1f12;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.auth-input-group input::placeholder {
+  color: #8c755c;
+}
+
+.auth-input-group input:focus {
+  border-color: #c5913e;
+  background: rgba(255, 251, 244, 0.96);
+  box-shadow:
+    0 0 0 3px rgba(212, 166, 86, 0.22),
+    0 4px 12px rgba(92, 65, 29, 0.08);
+}
+
+.auth-form .auth-input-group input,
+.register-grid .auth-input-group input {
+  padding-left: 42px;
+}
+
+.auth-form .auth-input-group::before,
+.register-grid .auth-input-group::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  z-index: 1;
+  width: 16px;
+  height: 42px;
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.auth-form > .auth-input-group:nth-child(1)::before {
+  background-image: var(--auth-icon-mail);
+}
+
+.auth-form > .auth-input-group:nth-child(2)::before {
+  background-image: var(--auth-icon-lock);
+}
+
+.register-grid > .auth-input-group:nth-child(1)::before,
+.register-grid > .auth-input-group:nth-child(2)::before {
+  background-image: var(--auth-icon-user);
+}
+
+.register-grid > .auth-input-group:nth-child(3)::before {
+  background-image: var(--auth-icon-mail);
+}
+
+.register-grid > .auth-input-group:nth-child(4)::before {
+  background-image: var(--auth-icon-lock);
+}
+
+.register-grid > .auth-input-group:nth-child(5)::before {
+  background-image: var(--auth-icon-phone);
+}
+
+.register-grid > .auth-input-group:nth-child(6)::before {
+  background-image: var(--auth-icon-pin);
+}
+
+.auth-input-group:has(.password-toggle) input {
+  padding-right: 42px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #6b5239;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #362413;
+  background: rgba(226, 195, 142, 0.35);
+}
+
+/* ---------- File Upload Picker ---------- */
+.file-upload-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-input-group .file-input-custom {
+  height: 40px;
+  padding: 6px 14px 6px 38px;
+  border: 1px solid rgba(224, 194, 144, 0.78);
+  border-radius: 999px;
+  background:
+    var(--auth-icon-cloud) 14px center / 16px no-repeat,
+    rgba(252, 246, 236, 0.78);
+  box-shadow:
+    0 3px 10px rgba(92, 65, 29, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  color: #6b533b;
+  cursor: pointer;
+}
+
+.file-input-custom::file-selector-button {
+  margin-right: 10px;
+  padding: 4px 12px;
+  border: 1px solid rgba(214, 171, 98, 0.7);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f3d79b 0%, #dfb365 100%);
+  color: #2b1d10;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-avatar-preview {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #c5913e;
+  box-shadow: 0 3px 8px rgba(92, 65, 29, 0.2);
+}
+
+/* ---------- Submit Button ---------- */
+.auth-submit-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px 20px;
+  border: 1px solid rgba(235, 198, 130, 0.75);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #b88332 0%, #8e5f1c 55%, #754b12 100%);
+  color: #fffaf0;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow:
+    0 8px 20px rgba(117, 75, 18, 0.32),
+    inset 0 1px 0 rgba(255, 238, 198, 0.45);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.auth-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    0 10px 24px rgba(117, 75, 18, 0.38),
+    inset 0 1px 0 rgba(255, 242, 210, 0.6);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+
+/* ---------- Footer Link ---------- */
+.auth-footer-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #5e4730;
+}
+
+.auth-footer-link a {
+  color: #825518;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.auth-footer-link a:hover {
+  color: #4f320b;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .auth-page-container {
+    padding: 10px;
+  }
+
+  .auth-top-brand {
+    top: 12px;
+    left: 12px;
+  }
+
+  .auth-glass-card {
+    padding: 20px 16px 18px;
+    border-radius: 22px;
+  }
+
+  .auth-card-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .register-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,111 @@
+/* src/Styles/Register.css
+   Builds on Login.css for the Warm Glassmorphism Register Card
+*/
+
+.auth-glass-card.register-glass-card {
+  max-width: 560px;
+  padding: 32px 36px 28px;
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+
+.register-grid .auth-input-group {
+  margin-bottom: 0;
+}
+
+.register-grid .auth-input-group > label {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #3a2817;
+}
+
+/* 6-field Register Grid Icons:
+   1 First Name, 2 Last Name, 3 Email, 4 Password, 5 Contact Number, 6 Address */
+.register-grid > .auth-input-group:nth-child(1)::before,
+.register-grid > .auth-input-group:nth-child(2)::before {
+  background-image: var(--auth-icon-user);
+}
+
+.register-grid > .auth-input-group:nth-child(3)::before {
+  background-image: var(--auth-icon-mail);
+}
+
+.register-grid > .auth-input-group:nth-child(4)::before {
+  background-image: var(--auth-icon-lock);
+}
+
+.register-grid > .auth-input-group:nth-child(5)::before {
+  background-image: var(--auth-icon-phone);
+}
+
+.register-grid > .auth-input-group:nth-child(6)::before {
+  background-image: var(--auth-icon-pin);
+}
+
+/* ---------- Optional Profile Picture Picker ---------- */
+.file-upload-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-input-group .file-input-custom {
+  height: auto;
+  padding: 10px 18px 10px 46px;
+  border: 1px solid rgba(224, 194, 144, 0.78);
+  border-radius: 999px;
+  background:
+    var(--auth-icon-cloud) 16px center / 20px no-repeat,
+    rgba(252, 246, 236, 0.78);
+  box-shadow:
+    0 4px 12px rgba(92, 65, 29, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  font-size: 0.86rem;
+  color: #6b533b;
+  cursor: pointer;
+}
+
+.file-input-custom::file-selector-button {
+  margin-right: 12px;
+  padding: 6px 14px;
+  border: 1px solid rgba(214, 171, 98, 0.7);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f3d79b 0%, #dfB365 100%);
+  color: #2b1d10;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.file-input-custom::file-selector-button:hover {
+  filter: brightness(1.04);
+}
+
+.register-avatar-preview {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #c5913e;
+  box-shadow: 0 4px 10px rgba(92, 65, 29, 0.2);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .auth-glass-card.register-glass-card {
+    padding: 26px 20px 24px;
+  }
+
+  .register-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

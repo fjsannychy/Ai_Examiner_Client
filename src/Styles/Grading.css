@@ -1,0 +1,531 @@
+/* Grading Portal Layout & Glassmorphism */
+.grading-page-container {
+    margin-left: 250px; /* Matches sidebar offset */
+    padding: 30px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .grading-page-container {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+
+.grading-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.grading-input,
+.grading-page-container input.form-control {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+}
+
+.grading-page-container input.form-control:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.grading-page-container input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.grading-list-item {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease;
+}
+
+.grading-list-item:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.grading-list-item.active {
+    background: rgba(13, 110, 253, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.grading-response-box {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+/* =========================================================================
+   Split-Pane Grading Workspace Modal (PDF Answer Sheet + Rubric)
+   ========================================================================= */
+.grading-modal-overlay {
+    left: 250px !important;
+    width: calc(100% - 250px) !important;
+    padding: 18px !important;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .grading-modal-overlay {
+        left: 0 !important;
+        width: 100% !important;
+        padding: 10px !important;
+    }
+}
+
+.grading-workspace-modal {
+    max-width: 880px;
+    width: 100%;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 18px 22px !important;
+    box-sizing: border-box;
+}
+
+.grading-workspace-modal--split {
+    max-width: 100%;
+    width: 100%;
+    height: calc(100vh - 36px);
+    max-height: calc(100vh - 36px);
+}
+
+.grading-workspace-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(55, 85, 52, 0.18);
+    flex-shrink: 0;
+}
+
+.grading-workspace-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.grading-workspace-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(46, 125, 50, 0.12);
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.28);
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.grading-live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2e7d32;
+}
+
+.grading-workspace-breadcrumb {
+    font-size: 0.88rem;
+    color: #375534;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grading-workspace-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.grading-draft-timestamp {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #2e7d32;
+    background: rgba(46, 125, 50, 0.1);
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.grading-workspace-body {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.grading-workspace-body.is-split {
+    grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
+}
+
+@media (max-width: 1024px) {
+    .grading-workspace-modal--split {
+        height: auto;
+        max-height: 92vh;
+        overflow-y: auto;
+    }
+
+    .grading-workspace-body.is-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left Pane: PDF Viewer */
+.grading-pdf-pane {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(55, 85, 52, 0.22);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.grading-pdf-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(55, 85, 52, 0.08);
+    border-bottom: 1px solid rgba(55, 85, 52, 0.16);
+    flex-shrink: 0;
+}
+
+.grading-pdf-file-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.grading-pdf-file-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #b45309;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.grading-pdf-title-wrap {
+    min-width: 0;
+    flex: 1;
+}
+
+.grading-pdf-file-meta h4 {
+    margin: 0;
+    font-size: 0.94rem;
+    color: #2b2a28;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grading-pdf-filename {
+    display: block;
+    font-size: 0.76rem;
+    color: #6b6252;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.grading-pdf-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.grading-pdf-tool-btn {
+    background: #ffffff;
+    color: #375534;
+    border: 1px solid rgba(55, 85, 52, 0.3);
+    padding: 5px 11px;
+    border-radius: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+}
+
+.grading-pdf-tool-btn:hover {
+    background: rgba(55, 85, 52, 0.1);
+}
+
+.grading-pdf-viewer-frame {
+    flex: 1;
+    min-height: 420px;
+    background: #33312e;
+    display: flex;
+}
+
+.grading-pdf-iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: none;
+}
+
+.grading-pdf-empty {
+    margin: auto;
+    padding: 24px;
+    text-align: center;
+    color: #f3f4f6;
+    font-size: 0.9rem;
+}
+
+/* Right Pane: Grading & Feedback Rubric */
+.grading-rubric-pane {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(55, 85, 52, 0.22);
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+}
+
+.grading-rubric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(55, 85, 52, 0.14);
+    flex-shrink: 0;
+}
+
+.grading-rubric-header h3 {
+    margin: 0 0 3px 0;
+    font-size: 1.05rem;
+    color: #2b2a28;
+}
+
+.grading-rubric-subtitle {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #6b6252;
+}
+
+.grading-total-score-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(46, 125, 50, 0.12);
+    border: 1px solid rgba(46, 125, 50, 0.3);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: #2b2a28;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.grading-total-score-pill strong {
+    color: #2e7d32;
+    font-size: 0.98rem;
+}
+
+.grading-questions-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: grid;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+.grading-rubric-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(55, 85, 52, 0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.grading-rubric-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    color: #2b2a28;
+}
+
+.grading-weight-badge {
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #375534;
+    background: rgba(55, 85, 52, 0.12);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.grading-question-desc {
+    margin: 0 0 12px 0;
+    font-size: 0.84rem;
+    color: #5c5549;
+    line-height: 1.45;
+}
+
+.grading-student-answer-box {
+    font-size: 0.88rem;
+    color: #3b3730;
+    background: rgba(55, 85, 52, 0.06);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin: 0 0 10px 0;
+}
+
+.grading-score-control-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.grading-slider-group {
+    flex: 1;
+}
+
+.grading-slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: #375534;
+    margin-bottom: 4px;
+}
+
+.grading-score-slider {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 4px 0 0 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    accent-color: #2e7d32;
+    cursor: pointer;
+    display: block;
+}
+
+.grading-numeric-input-box {
+    width: 88px;
+    flex-shrink: 0;
+}
+
+.grading-numeric-input-box label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b6252;
+    margin-bottom: 2px;
+}
+
+.grading-numeric-input-box input {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 7px;
+    border: 1px solid rgba(55, 85, 52, 0.3);
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.grading-feedback-field label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #375534;
+    margin-bottom: 5px;
+}
+
+.grading-feedback-field input,
+.grading-feedback-textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(55, 85, 52, 0.25);
+    font-size: 0.88rem;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.grading-feedback-textarea {
+    resize: vertical;
+    min-height: 84px;
+}
+
+.grading-workspace-footer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  min-width: 0;
+}
+
+.grading-footer-nav,
+.grading-footer-submit {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.grading-nowrap-btn {
+  white-space: nowrap;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 1280px) {
+  .grading-nowrap-btn {
+    padding: 7px 10px;
+    font-size: 0.82rem;
+  }
+}
